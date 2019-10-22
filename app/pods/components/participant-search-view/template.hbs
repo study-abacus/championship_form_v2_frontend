@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col s6 m4">
+    <label>Search By</label>
+    <select class="browser-default" onchange={{action (mut selectedSearchField) value="target.value"}}>
+      {{#each searchByFields as |field|}} 
+        <option 
+          value={{field.value}}
+          selected={{eq selectedSearchField field.value}} >
+          {{field.name}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="col s6 m6">
+    <div class="input-field">
+      <Input 
+        id="search" 
+        @type="text" 
+        @value={{searchQuery}} />
+      <label for="search">Search Query</label>
+    </div>
+  </div>
+  <div class="col s6 m2">
+    <div class="input-field">
+      <button class="btn" {{action (perform searchTask) searchQuery}}>
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <table class="striped centered">
+    <thead>
+      <tr>
+        <th>Form No.</th>
+        <th>Student Name</th>
+        <th>CI Name</th>
+        <th>ID</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each participants as |participant|}}
+        <tr>
+          <td>
+            {{participant.id}}
+          </td>
+          <td>
+            {{participant.name}}
+          </td>
+          <td>
+            {{participant.teacher.name}}
+          </td>
+          <td>
+            {{participant.studentId}}
+          </td>
+          <td>
+            <a href="#" target="_blank" class="btn waves-effect waves-light">Admit Card</a>
+            <LinkTo 
+              @route='participate.id'
+              @model={{participant.id}}
+              class="btn waves-effect waves-light">
+              Edit
+            </LinkTo>
+            <button class="btn waves-effect waves-light red">Delete</button>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

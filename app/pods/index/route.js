@@ -1,4 +1,5 @@
 import Route from '@ember/routing/route';
+import AuthenticatedRouteMixin from 'championship-frontend/mixins/authenticated-route-mixin';
+const AuthenticatedRoute = Route.extend(AuthenticatedRouteMixin)
 
-export default Route.extend({
-});
+export default class IndexRoute extends AuthenticatedRoute {}

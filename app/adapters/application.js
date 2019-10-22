@@ -9,9 +9,9 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: env.apiHost,
   namespace: env.namespace,
   authorize(xhr) {
-    const { jwt } = this.get('session.data.authenticated');
-    if (isPresent(jwt)) {
-      xhr.setRequestHeader('Authorization', `JWT ${jwt}`);
+    const { token } = this.get('session.data.authenticated');
+    if (isPresent(token)) {
+      xhr.setRequestHeader('Authorization', `JWT ${token}`);
     }
   },
 });

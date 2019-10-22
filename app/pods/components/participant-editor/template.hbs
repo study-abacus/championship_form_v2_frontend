@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col s12 m6 l4">
+    <div class="input-field">
+      <Input 
+        type="text" 
+        id="name" 
+        @value={{participant.name}} />
+      <label for="name">Participant Name</label>
+    </div>
+  </div>
+  <div class="col s12 m6 l4">
+    <div class="input-field">
+      <Input 
+        type="text" 
+        id="name" 
+        @value={{participant.studentId}} />
+      <label for="name">Student ID</label>
+    </div>
+  </div>
+  <div class="col s12 m6 l4">
+    <div class="input-field">
+      <Input 
+        type="text" 
+        id="name" 
+        @value={{participant.tShirtSize}} />
+      <label for="name">T-Shirt Size</label>
+    </div>
+  </div>
+  <div class="col s12 m6 l4">
+    <PowerSelect 
+      @search={{action (perform fetchTeachersTask)}}
+      @options={{teachers}}
+      @selected={{participant.teacher}}
+      @onchange={{action (mut participant.teacher)}} as |teacher|>
+      {{teacher.name}}
+    </PowerSelect>
+  </div>
+</div>
+<div class="row">
+  <button class="btn" {{action (perform saveParticipantTask)}}>
+    Save
+  </button>
+</div>

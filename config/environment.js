@@ -10,8 +10,6 @@ module.exports = function(environment) {
     'ember-simple-auth-token': {
       identificationField: 'code',
       passwordField: 'code',
-      refreshTokenPropertyName: 'refresh',
-      tokenPropertyName: 'access',
       refreshAccessTokens: true,
       tokenExpireName: 'exp',
       refreshLeeway: 60, //send a request for refresh_token 60sec before actual expiration
@@ -35,8 +33,8 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    ENV.apiHost = 'http://localhost:8000/',
-    ENV.nameSpace = 'api/'
+    ENV.apiHost = 'http://localhost:3000',
+    ENV.namespace = 'api'
   }
 
   if (environment === 'test') {
@@ -55,8 +53,8 @@ module.exports = function(environment) {
     // here you can enable a production-specific feature
   }
 
-  ENV['ember-simple-auth-token'].serverTokenEndpoint = ENV.apiHost + "auth/token/"
-	ENV['ember-simple-auth-token'].serverTokenRefreshEndpoint = ENV.apiHost + "auth/token/refresh/"
+  ENV['ember-simple-auth-token'].serverTokenEndpoint = ENV.apiHost + "/api/jwt/login/"
+	ENV['ember-simple-auth-token'].serverTokenRefreshEndpoint = ENV.apiHost + "/api/jwt/refresh/"
 
   return ENV;
 };

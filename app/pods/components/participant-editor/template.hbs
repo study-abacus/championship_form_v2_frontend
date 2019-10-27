@@ -5,7 +5,7 @@
         type="text" 
         id="name" 
         @value={{participant.name}} />
-      <label for="name">Participant Name</label>
+      <label class="active" for="name">Participant Name</label>
     </div>
   </div>
   <div class="col s12 m6 l4">
@@ -14,7 +14,7 @@
         type="text" 
         id="name" 
         @value={{participant.studentId}} />
-      <label for="name">Student ID</label>
+      <label class="active" for="name">Student ID</label>
     </div>
   </div>
   <div class="col s12 m6 l4">
@@ -23,7 +23,7 @@
         type="text" 
         id="name" 
         @value={{participant.tShirtSize}} />
-      <label for="name">T-Shirt Size</label>
+      <label class="active" for="name">T-Shirt Size</label>
     </div>
   </div>
   <div class="col s12 m6 l4">
@@ -36,7 +36,10 @@
     </PowerSelect>
   </div>
 </div>
-{{yield}}
+{{#if participant.id}}
+  <ParticipationsEditor 
+    @participant={{participant}} />
+{{/if}}
 <div class="row">
   <button class="btn" {{action (perform saveParticipantTask)}}>
     Save

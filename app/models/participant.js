@@ -6,5 +6,5 @@ export default Model.extend({
   studentId: DS.attr(),
   tShirtSize: DS.attr(),
   teacher: DS.belongsTo('teacher'),
-  exams: DS.belongsTo('exam'),
+  participations: DS.hasMany('participations'),
 });

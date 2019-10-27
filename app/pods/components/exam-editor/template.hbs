@@ -1,0 +1,46 @@
+{{#if (and participation.id (not editing))}}
+  <h5>
+    {{participation.exam.subject}} - {{participation.exam.level}}
+  </h5>
+  <button class="waves-effect waves-light btn" {{action (mut editing) true}}>
+    Edit
+  </button>
+{{else}}
+  <div class="col s4">
+    <div class="input-field">
+      <select class="browser-default" onchange={{action 'selectSubject' value="target.value"}}>
+        <option>Course</option>
+        {{#each subjects as |subject|}}
+          <option value={{subject}} selected={{eq selectedSubject subject}}>
+            {{subject}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+  <div class="col s4">
+    <div class="input-field">
+      <select class="browser-default" onchange={{action (mut selectedExamId) value="target.value"}}>
+        <option>Exam</option>
+        {{#each exams as |exam|}}
+          <option value={{exam.id}} selected={{eq selectedExamId exam.id}}>
+            ( {{exam.subject}} ) - {{exam.level}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+  <div class="col s4">
+    {{#if participation.id}}
+      <button class="waves-effect waves-light btn" {{action (mut editing) false}}>
+        Cancel
+      </button>
+    {{/if}}
+    <button class="waves-effect waves-light btn" {{action (perform saveParticipationTask)}}>
+      Save
+    </button>
+    <button class="waves-effect waves-light btn red" {{action 'deleteParticipation'}}>
+      Delete
+    </button>
+  </div>
+{{/if}}

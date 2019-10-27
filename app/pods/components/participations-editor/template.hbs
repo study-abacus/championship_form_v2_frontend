@@ -1,0 +1,12 @@
+<div class="row">
+  <button class="btn" {{action 'addNewExam'}}>
+    Add New Exam
+  </button>
+</div>
+{{#each participations as |participation|}}
+  <div class="row collection">
+    <ExamEditor
+      class="collection-item"
+      @participation={{participation}} />
+  </div>
+{{/each}}

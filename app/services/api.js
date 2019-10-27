@@ -10,7 +10,7 @@ export default AjaxService.extend({
     namespace: env.namespace,
     headers: computed ('session.data.authenticated.jwt', function () {
         let headers = {};
-        const jwt = this.get('session.data.authenticated.jwt');
+        const jwt = this.get('session.data.authenticated.token');
         if (jwt) {
             headers['Authorization'] = `JWT ${jwt}`;
           }

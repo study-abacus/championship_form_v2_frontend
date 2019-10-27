@@ -28,5 +28,6 @@ export default class ParticipantEditor extends Component {
     if (this.onAfterSave) {
       this.onAfterSave()
     }
+    M.toast({html: 'Successfully Saved'})
   }
 }

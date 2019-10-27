@@ -7,6 +7,9 @@ module.exports = function(environment) {
     environment,
     rootURL: '/',
     locationType: 'auto',
+    'ember-composable-helpers': {
+      only: ['inc']
+    },
     'ember-simple-auth-token': {
       identificationField: 'code',
       passwordField: 'code',
@@ -50,7 +53,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV.apiHost = 'http://championship-api.studyabacus.com',
+    ENV.namespace = 'api'
   }
 
   ENV['ember-simple-auth-token'].serverTokenEndpoint = ENV.apiHost + "/api/jwt/login/"

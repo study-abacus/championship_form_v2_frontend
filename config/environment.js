@@ -8,7 +8,7 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
     'ember-composable-helpers': {
-      only: ['inc']
+      only: ['inc', 'dec']
     },
     'ember-simple-auth-token': {
       identificationField: 'code',

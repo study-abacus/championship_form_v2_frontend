@@ -17,7 +17,7 @@
         @search={{action (perform searchTeachersTask)}}
         @options={{teachers}}
         @selected={{selectedTeacher}}
-        @onchange={{action (mut selectedTeacher)}} as |teacher|>
+        @onchange={{action 'selectTeacher'}} as |teacher|>
         {{teacher.name}}
       </PowerSelect>
     {{else}}
@@ -25,64 +25,16 @@
         <Input 
           id="search" 
           @type="text" 
-          @value={{query}} />
+          @value={{searchQuery}} />
         <label for="search">Search Query</label>
       </div>
     {{/if}}
   </div>
   <div class="col s6 m2">
     <div class="input-field">
-      <button class="btn" {{action (perform searchTask) query}}>
+      <button class="btn" {{action onSearch selectedSearchField searchQuery}}>
         Search
       </button>
     </div>
   </div>
 </div>
-{{#if searchTask.isRunning}}
-  <Loader />
-{{else}}
-  <div class="row">
-    <PaginationPills
-      @pagination={{participants.meta.pagination}} />
-  </div>
-  <div class="row">
-    <table class="striped centered">
-      <thead>
-        <tr>
-          <th>Form No.</th>
-          <th>Student Name</th>
-          <th>CI Name</th>
-          <th>ID</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each participants as |participant|}}
-          <tr>
-            <td>
-              {{participant.id}}
-            </td>
-            <td>
-              {{participant.name}}
-            </td>
-            <td>
-              {{participant.teacher.name}}
-            </td>
-            <td>
-              {{participant.studentId}}
-            </td>
-            <td>
-              <a href="#" target="_blank" class="btn waves-effect waves-light">Admit Card</a>
-              <LinkTo 
-                @route='participate.id'
-                @model={{participant.id}}
-                class="btn waves-effect waves-light">
-                Edit
-              </LinkTo>
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-</div>
-{{/if}}

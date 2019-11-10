@@ -5,5 +5,53 @@
     </blockquote>
   </div>
   <ParticipantSearchView 
-    @query={{query}}/>
+    @participants={{participants}}
+    @by={{by}}
+    @query={{query}}
+    @onSearch={{action 'onSearch'}} />
+  <div class="row">
+    <PaginationPills
+      @setOffset={{action 'setOffset'}}
+      @pagination={{participants.meta.pagination}} />
+  </div>
+  <div class="row">
+    <table class="striped centered">
+      <thead>
+        <tr>
+          <th>Form No.</th>
+          <th>Student Name</th>
+          <th>CI Name</th>
+          <th>ID</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each participants as |participant|}}
+          <tr>
+            <td>
+              {{participant.id}}
+            </td>
+            <td>
+              {{participant.name}}
+            </td>
+            <td>
+              {{participant.teacher.name}}
+            </td>
+            <td>
+              {{participant.studentId}}
+            </td>
+            <td>
+              <a href="#" target="_blank" class="btn waves-effect waves-light">Admit Card</a>
+              <LinkTo 
+                @route='participate.id'
+                @model={{participant.id}}
+                class="btn waves-effect waves-light">
+                Edit
+              </LinkTo>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>
